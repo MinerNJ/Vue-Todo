@@ -1,23 +1,26 @@
 <template>
   <div>
-    <p>Completed Tasks: {{todos.filter(todo => {return todo.done === true}).length}}</p>
-    <p>Pending Tasks: {{todos.filter(todo => {return todo.done === false}).length}}</p>
-    <todo v-for="(todo, key) in todos" v-bind:todo="todo" v-bind:key="key"></todo>
-    <todo v-on:delete-todo="deleteTodo" v-for="(todo, key) in todos" v-bind:todo="todo" v-bind:key="key"></todo>
-    <todo v-on:complete-todo="completeTodo" v-for="(todo, key) in todos" v-bind:todo="todo" v-bind:key="key"></todo>
-
-
+    <div class="list-info">
+      <p>Completed Tasks: {{todos.filter(todo => {return todo.done === true}).length}}</p>
+      <p>Pending Tasks: {{todos.filter(todo => {return todo.done === false}).length}}</p>
+    </div>
+  <TodoItem
+    v-on:delete-todo = "deleteTodo"
+    v-on:complete-todo = "completeTodo"
+    v-for="(todo, index) in todos"
+    v-bind:todo = "todo"
+    v-bind:key = "index" />
   </div>
 </template>
 
-<script type = "text/javascript" >
+<script>
 
-import Todo from './Todo';
+import TodoItem from './TodoItem';
 
 export default {
   props: ['todos'],
   components: {
-    Todo,
+    TodoItem,
   },
   methods: {
     deleteTodo(todo) {

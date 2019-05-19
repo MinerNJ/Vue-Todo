@@ -12,10 +12,10 @@
           </div>
           <div class='field'>
             <label>Project</label>
-            <input type='text' ref='project' defaultValue="">
+            <input v-model="projectText" type='text' ref='project' defaultValue="">
           </div>
           <div class='ui two button attached buttons'>
-            <button class='ui basic blue button' v-on:click="sendForm()">
+            <button class='ui basic blue button' v-on:click="sendForm">
               Create
             </button>
             <button class='ui basic red button' v-on:click="closeForm">
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -54,8 +55,10 @@ export default {
           done: false,
         });
         this.newTodoText = '';
+        this.projectText = '';
+        this.isCreating = false;
+
       }
-      this.isCreating = false;
     },
   },
 };
